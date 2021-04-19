@@ -15,7 +15,7 @@ jobs:
         with:
             skip_adding_nixpkgs_channel: true
       - name: Check nixpkgs-fmt formatting
-        run: nix-shell -p nixpkgs-fmt --run 'nixpkgs-fmt --check'
+        run: .github/workflows/fmt.sh
 
   build:
     runs-on: ubuntu-latest
