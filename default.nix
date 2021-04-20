@@ -1,7 +1,11 @@
 let
   sources = import ./nix/sources.nix;
 
-  pkgs = import sources.nixpkgs { };
+  pkgs = import sources.nixpkgs {
+    config = {
+      allowUnfree = true;
+    };
+  };
   lib = pkgs.lib;
 in
 lib.makeScope pkgs.newScope (self: {
