@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, scanoss-engine
 , openssl
 , scanoss-wayuu
 }:
@@ -14,6 +15,10 @@ stdenv.mkDerivation rec {
     rev = version;
     sha256 = "bYDSK6QkaH57B0wz33i4c21IvfaVid4d1FZLx0JT/2Y=";
   };
+
+  preBuild = ''
+    sed "s@/usr/bin/scanoss@${scanoss-engine}/bin/scanoss@" -i src/scan_direct.h
+  '';
 
   buildInputs = [
     openssl
